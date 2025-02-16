@@ -21,3 +21,11 @@ func home(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 	}
 }
+
+func productsList(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("tu bedzie lista produktow"))
+}
+
+func productsListPost(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("tu bedzie filtrowanie"))
+}

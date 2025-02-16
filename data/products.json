@@ -1,0 +1,65 @@
+[
+	{
+		"Name": "wreath",
+		"Occasion": [
+			"christmas",
+			"easter",
+			"special",
+			"regular"
+		],
+		"Size": [
+			"small",
+			"medium",
+			"large"
+		],
+		"Price": {
+			"small": 120,
+			"medium": 160,
+			"large": 200
+		}
+	},
+	{
+		"Name": "bouquet",
+		"Occasion": [
+			"christmas",
+			"valentines",
+			"birthday",
+			"anniversary",
+			"wedding",
+			"special",
+			"regular"
+		],
+		"Size": [
+			"small",
+			"medium",
+			"large"
+		],
+		"Price": {
+			"small": 80,
+			"medium": 100,
+			"large": 150
+		}
+	},
+	{
+		"Name": "flowerbox",
+		"Occasion": [
+			"easter",
+			"valentines",
+			"birthday",
+			"anniversary",
+			"wedding",
+			"special",
+			"regular"
+		],
+		"Size": [
+			"small",
+			"medium",
+			"large"
+		],
+		"Price": {
+			"small": 80,
+			"medium": 120,
+			"large": 160
+		}
+	}
+]
