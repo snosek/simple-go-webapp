@@ -31,7 +31,6 @@ main {
 h1 a {
     font-size: 36px;
     font-weight: bold;
-    /* background-image: url("/static/img/logo.png"); */
     background-repeat: no-repeat;
     background-position: 0px 0px;
     height: 36px;
@@ -222,54 +221,6 @@ button:hover {
     color: #4EB722;
     text-decoration: underline;
     cursor: pointer;
-}
-
-.snippet {
-    background-color: #FFFFFF;
-    border: 1px solid #E4E5E7;
-    border-radius: 3px;
-}
-
-.snippet pre {
-    padding: 18px;
-    border-top: 1px solid #E4E5E7;
-    border-bottom: 1px solid #E4E5E7;
-}
-
-.snippet .metadata {
-    background-color: #F7F9FA;
-    color: #6A6C6F;
-    padding: 0.75em 18px;
-    overflow: auto;
-}
-
-.snippet .metadata span {
-    float: right;
-}
-
-.snippet .metadata strong {
-    color: #34495E;
-}
-
-.snippet .metadata time {
-    display: inline-block;
-}
-
-.snippet .metadata time:first-child {
-    float: left;
-}
-
-.snippet .metadata time:last-child {
-    float: right;
-}
-
-div.flash {
-    color: #FFFFFF;
-    font-weight: bold;
-    background-color: #34495E;
-    padding: 18px;
-    margin-bottom: 36px;
-    text-align: center;
 }
 
 div.error {
