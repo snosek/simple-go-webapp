@@ -3,13 +3,17 @@
 {{ define "main" }}
 	{{ with .Product }}
 		<h2>{{ polishName .Name }}</h2>
-		{{ polishName .Name }} nada się na: 
-		{{ range .Occasion }}
-			{{ polishName . }},
-		{{ end }} <br>
-		Ceny:
-		{{ range $key, $value := .Price }}
-			{{ polishName $key }}: {{ $value }}<br>
-		{{ end }}
+		Wybierz okazję: 
+		<select name="occasion" id="products">
+			{{ range .Occasion }}
+				<option value="{{ . }}">{{ polishName . }}</option>
+			{{ end }}
+		</select><br>
+		Wybierz rozmiar:
+		<select name="size" id="products">
+			{{ range .Size }}
+				<option value="{{ . }}">{{ polishName . }}</option>
+			{{ end }}
+		</select>
 	{{ end }}
 {{ end }}
