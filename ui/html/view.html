@@ -1,0 +1,15 @@
+{{ define "title" }}Produkt{{ end }}
+
+{{ define "main" }}
+	{{ with .Product }}
+		<h2>{{ polishName .Name }}</h2>
+		{{ polishName .Name }} nada się na: 
+		{{ range .Occasion }}
+			{{ polishName . }},
+		{{ end }} <br>
+		Ceny:
+		{{ range $key, $value := .Price }}
+			{{ polishName $key }}: {{ $value }}<br>
+		{{ end }}
+	{{ end }}
+{{ end }}

@@ -11,9 +11,20 @@ import (
 
 func polishName(name string) string {
 	return map[string]string{
-		"wreath":    "Wianek",
-		"bouquet":   "Bukiet",
-		"flowerbox": "Flower Box",
+		"wreath":      "Wianek",
+		"bouquet":     "Bukiet",
+		"flowerbox":   "Flower Box",
+		"christmas":   "Boże narodzenie",
+		"valentines":  "Walentynki",
+		"birthday":    "Urodziny",
+		"anniversary": "Rocznica",
+		"wedding":     "Ślub",
+		"easter":      "Wielkanoc",
+		"special":     "Specjalna okazja",
+		"regular":     "Zwyczajny",
+		"small":       "Mały",
+		"medium":      "Średni",
+		"large":       "Duży",
 	}[name]
 }
 
@@ -24,6 +35,7 @@ var functions template.FuncMap = template.FuncMap{
 type templateData struct {
 	CurrentYear int
 	Products    []data.Product
+	Product     data.Product
 }
 
 func newTemplateData() templateData {

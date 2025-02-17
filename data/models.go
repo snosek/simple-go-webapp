@@ -2,6 +2,7 @@ package data
 
 import (
 	"encoding/json"
+	"errors"
 )
 
 type Product struct {
@@ -11,7 +12,7 @@ type Product struct {
 	Price    map[string]int
 }
 
-func GetProducts() ([]Product, error) {
+func getProducts() ([]Product, error) {
 	var products []Product
 	data, err := Data.ReadFile("products.json")
 	if err != nil {
@@ -22,4 +23,15 @@ func GetProducts() ([]Product, error) {
 		return products, err
 	}
 	return products, nil
+}
+
+var Products, _ = getProducts()
+
+func GetProductWithName(name string) (Product, error) {
+	for _, product := range Products {
+		if product.Name == name {
+			return product, nil
+		}
+	}
+	return Product{}, errors.New("product not found")
 }
