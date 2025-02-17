@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"4pw.snosek.pl/ui"
+	"github.com/justinas/alice"
 )
 
 type application struct {
@@ -24,8 +25,10 @@ func main() {
 	mux.HandleFunc("POST /products/list", app.productsListPost)
 	mux.HandleFunc("GET /products/view/{name}", app.productsView)
 
+	middleware := alice.New(commonHeaders, app.logRequest)
+
 	app.logger.Info("starting server on :4000")
-	err := http.ListenAndServe(":4000", app.logRequest(mux))
+	err := http.ListenAndServe(":4000", middleware.Then(mux))
 	app.logger.Error(err.Error())
 	os.Exit(1)
 }

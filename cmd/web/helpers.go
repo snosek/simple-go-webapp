@@ -10,15 +10,11 @@ import (
 )
 
 func polishName(name string) string {
-	if name == "wreath" {
-		return "Wianek"
-	} else if name == "flowerbox" {
-		return "Flower Box"
-	} else if name == "bouquet" {
-		return "Bukiet"
-	} else {
-		return ""
-	}
+	return map[string]string{
+		"wreath":    "Wianek",
+		"bouquet":   "Bukiet",
+		"flowerbox": "Flower Box",
+	}[name]
 }
 
 var functions template.FuncMap = template.FuncMap{
