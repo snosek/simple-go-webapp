@@ -10,7 +10,7 @@ func (app *application) logRequest(next http.Handler) http.Handler {
 			method = r.Method
 			uri    = r.URL.RequestURI()
 		)
-		app.logger.Info("received request", "method", method, "ip", ip, "proto", proto, "uri", uri)
+		app.logger.Info("received request", "method", method, "uri", uri, "ip", ip, "proto", proto)
 		next.ServeHTTP(w, r)
 	})
 }

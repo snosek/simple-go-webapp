@@ -22,8 +22,9 @@ func main() {
 	mux.HandleFunc("GET /{$}", app.home)
 	mux.HandleFunc("GET /products/list", app.productsList)
 	mux.HandleFunc("POST /products/list", app.productsListPost)
+	mux.HandleFunc("GET /products/view/{name}", app.productsView)
 
-	app.logger.Info("starting server on :4000...")
+	app.logger.Info("starting server on :4000")
 	err := http.ListenAndServe(":4000", app.logRequest(mux))
 	app.logger.Error(err.Error())
 	os.Exit(1)
