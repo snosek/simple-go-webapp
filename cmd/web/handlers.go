@@ -28,7 +28,6 @@ func (app *application) productsView(w http.ResponseWriter, r *http.Request) {
 		app.serverError(w, r, err)
 		return
 	}
-	app.sessionManager.Put(r.Context(), "name", name)
 	app.render(w, r, "view", withProduct(app.newTemplateData(r), product))
 }
 
@@ -37,7 +36,7 @@ func (app *application) productsViewPost(w http.ResponseWriter, r *http.Request)
 		app.serverError(w, r, err)
 		return
 	}
-	name := app.sessionManager.GetString(r.Context(), "name")
+	name := r.PathValue("name")
 	product, err := data.GetProductWithName(name)
 	if err != nil {
 		app.serverError(w, r, err)
