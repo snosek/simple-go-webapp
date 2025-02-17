@@ -1,8 +1,10 @@
 {{ define "title" }}List{{ end }}
 
 {{ define "main" }}
-
-	<h2>4pw</h2>
-	<p>There's nothing to see here yet!</p>
-	
+	<h2>Lista produktów:</h2>
+	{{ range .Products }}
+		<div>
+			<a href="/products/view/{{ .Name }}">{{ polishName .Name }}</a>
+		</div>
+	{{ end }}
 {{ end }}
