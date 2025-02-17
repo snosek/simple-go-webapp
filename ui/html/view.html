@@ -1,19 +1,22 @@
 {{ define "title" }}Produkt{{ end }}
 
 {{ define "main" }}
+<form action='/products/view/{{.Product.Name}}' method='POST' id="productForm">
 	{{ with .Product }}
 		<h2>{{ polishName .Name }}</h2>
 		Wybierz okazję: 
-		<select name="occasion" id="products">
+		<select name="occasion" id="products" form="productForm">
 			{{ range .Occasion }}
 				<option value="{{ . }}">{{ polishName . }}</option>
 			{{ end }}
 		</select><br>
 		Wybierz rozmiar:
-		<select name="size" id="products">
+		<select name="size" id="products" form="productForm">
 			{{ range .Size }}
 				<option value="{{ . }}">{{ polishName . }}</option>
 			{{ end }}
 		</select>
-	{{ end }}
+	{{ end }}<br>
+	<input type='submit' value='Zamów'>
+</form>
 {{ end }}

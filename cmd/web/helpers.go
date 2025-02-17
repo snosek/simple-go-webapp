@@ -36,11 +36,13 @@ type templateData struct {
 	CurrentYear int
 	Products    []data.Product
 	Product     data.Product
+	Flash       string
 }
 
-func newTemplateData() templateData {
+func (app *application) newTemplateData(r *http.Request) templateData {
 	return templateData{
 		CurrentYear: time.Now().Year(),
+		Flash:       app.sessionManager.PopString(r.Context(), "flash"),
 	}
 }
 
@@ -68,4 +70,9 @@ func (app *application) serverError(w http.ResponseWriter, r *http.Request, err 
 	)
 	app.logger.Error(err.Error(), "method", method, "uri", uri)
 	http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+}
+
+func withProduct(data templateData, product data.Product) templateData {
+	data.Product = product
+	return data
 }
