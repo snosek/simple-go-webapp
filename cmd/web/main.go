@@ -1,26 +1,30 @@
 package main
 
 import (
-	"fmt"
-	"log"
+	"log/slog"
 	"net/http"
+	"os"
 
-	models "4pw.snosek.pl/data"
 	"4pw.snosek.pl/ui"
 )
 
+type application struct {
+	logger *slog.Logger
+}
+
 func main() {
+	app := &application{
+		logger: slog.New(slog.NewTextHandler(os.Stdout, nil)),
+	}
 	mux := http.NewServeMux()
-	mux.Handle("GET /static/", http.FileServerFS(ui.Files))
+	mux.Handle("GET /static/", http.FileServerFS(ui.Static))
 
-	mux.HandleFunc("GET /{$}", home)
-	mux.HandleFunc("GET /products/list", productsList)
-	mux.HandleFunc("POST /products/list", productsListPost)
+	mux.HandleFunc("GET /{$}", app.home)
+	mux.HandleFunc("GET /products/list", app.productsList)
+	mux.HandleFunc("POST /products/list", app.productsListPost)
 
-	products := models.GetProducts()
-	fmt.Print(products)
-
-	log.Print("starting server on :4000")
-	err := http.ListenAndServe(":4000", mux)
-	log.Fatal(err)
+	app.logger.Info("starting server on :4000...")
+	err := http.ListenAndServe(":4000", app.logRequest(mux))
+	app.logger.Error(err.Error())
+	os.Exit(1)
 }

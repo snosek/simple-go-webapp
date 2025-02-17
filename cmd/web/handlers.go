@@ -1,31 +1,25 @@
 package main
 
 import (
-	"html/template"
-	"log"
+	"fmt"
 	"net/http"
 
-	"4pw.snosek.pl/ui"
+	"4pw.snosek.pl/data"
 )
 
-func home(w http.ResponseWriter, r *http.Request) {
-	ts, err := template.ParseFS(ui.Files, "html/base.html", "html/home.html", "html/nav.html")
-	if err != nil {
-		log.Print(err.Error())
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
-	}
-	err = ts.ExecuteTemplate(w, "base", nil)
-	if err != nil {
-		log.Print(err.Error())
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-	}
+func (app *application) home(w http.ResponseWriter, r *http.Request) {
+	app.render(w, r, "home", nil)
 }
 
-func productsList(w http.ResponseWriter, r *http.Request) {
+func (app *application) productsList(w http.ResponseWriter, r *http.Request) {
+	products, err := data.GetProducts()
+	if err != nil {
+		app.serverError(w, r, err)
+	}
+	fmt.Println(products)
 	w.Write([]byte("tu bedzie lista produktow"))
 }
 
-func productsListPost(w http.ResponseWriter, r *http.Request) {
+func (app *application) productsListPost(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("tu bedzie filtrowanie"))
 }

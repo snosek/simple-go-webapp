@@ -1,10 +1,7 @@
-package models
+package data
 
 import (
 	"encoding/json"
-	"log"
-	"os"
-	"path/filepath"
 )
 
 type Product struct {
@@ -14,16 +11,15 @@ type Product struct {
 	Price    map[string]int
 }
 
-func GetProducts() []Product {
-	fpath, err := filepath.Abs("data/products.json")
-	data, err := os.ReadFile(fpath)
-	if err != nil {
-		log.Print(err.Error())
-	}
+func GetProducts() ([]Product, error) {
 	var products []Product
+	data, err := Data.ReadFile("products.json")
+	if err != nil {
+		return products, err
+	}
 	err = json.Unmarshal(data, &products)
 	if err != nil {
-		log.Print(err.Error())
+		return products, err
 	}
-	return products
+	return products, nil
 }
