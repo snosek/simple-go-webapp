@@ -34,7 +34,6 @@ func main() {
 	mux.HandleFunc("POST /products/view/{name}", app.productsViewPost)
 
 	middleware := alice.New(app.sessionManager.LoadAndSave, commonHeaders, app.logRequest)
-
 	app.logger.Info("starting server on :4000")
 	err := http.ListenAndServe(":4000", middleware.Then(mux))
 	app.logger.Error(err.Error())
